@@ -52,10 +52,30 @@
     </div>
 
     <script>
-        function checkPasscode() {
+        /*
+          Passcode check updated to use a SHA-256 hash comparison instead of a plaintext string.
+          IMPORTANT: This is only obfuscation on the client side and is NOT secure against a determined attacker.
+          If you need a secret that must be kept private, verify the passcode on a server or serverless function instead.
+
+          To compute the SHA-256 hash of your passcode in the browser console, paste the sha256hex function below and run:
+            (async ()=>{ console.log(await sha256hex('your-passcode-here')) })()
+        */
+
+        // Replace this placeholder with the SHA-256 hex of your chosen passcode.
+        const storedHash = 'REPLACE_WITH_SHA256_HEX';
+
+        async function sha256hex(str) {
+            const enc = new TextEncoder();
+            const buf = await crypto.subtle.digest('SHA-256', enc.encode(str));
+            return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+
+        async function checkPasscode() {
             const input = document.getElementById('passcode').value;
-            if (input === 'DxhiSCOoL') {
-                alert('https://www.mediafire.com/file/h64hj5bf0yeenz3/youcamefromdiscord_gg.mp3/file');
+            const h = await sha256hex(input);
+            if (h === storedHash) {
+                // Access action - replace with what you want to happen on success.
+                alert('Access Granted!');
             } else {
                 alert('Incorrect passcode!');
             }
