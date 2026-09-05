@@ -53,31 +53,45 @@
 
     <script>
         /*
-          Passcode check updated to use a SHA-256 hash comparison instead of a plaintext string.
-          IMPORTANT: This is only obfuscation on the client side and is NOT secure against a determined attacker.
-          If you need a secret that must be kept private, verify the passcode on a server or serverless function instead.
+          This page now verifies the passcode on a Netlify Function so the secret is not exposed in the client files.
+          Setup steps (Netlify):
+            1) In your Netlify site dashboard, go to Site settings → Build & deploy → Environment → Environment variables.
+            2) Add a variable named PASS_HASH with the SHA-256 hex of your passcode (do not commit this to the repo).
+               Example to generate SHA-256 locally: node -e "const crypto=require('crypto'); console.log(crypto.createHash('sha256').update('your-pass','utf8').digest('hex'))"
+            3) Deploy the site. The function endpoint will be available at /.netlify/functions/check-pass
 
-          To compute the SHA-256 hash of your passcode in the browser console, paste the sha256hex function below and run:
-            (async ()=>{ console.log(await sha256hex('your-passcode-here')) })()
+          Security notes:
+            - Using a serverless function prevents the plaintext passcode or its hash from appearing in client-side files.
+            - For stronger protection against brute-force, use a slow hash like bcrypt on a server that supports it. This example uses SHA-256 for simplicity and to avoid adding extra dependencies.
         */
 
-        // Replace this placeholder with the SHA-256 hex of your chosen passcode.
-        const storedHash = 'REPLACE_WITH_SHA256_HEX';
-
-        async function sha256hex(str) {
-            const enc = new TextEncoder();
-            const buf = await crypto.subtle.digest('SHA-256', enc.encode(str));
-            return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
-        }
-
         async function checkPasscode() {
-            const input = document.getElementById('passcode').value;
-            const h = await sha256hex(input);
-            if (h === storedHash) {
-                // Access action - replace with what you want to happen on success.
-                alert('Access Granted!');
-            } else {
-                alert('Incorrect passcode!');
+            const pass = document.getElementById('passcode').value;
+            try {
+                const res = await fetch('/.netlify/functions/check-pass', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ pass })
+                });
+
+                if (!res.ok) {
+                    if (res.status === 401) {
+                        alert('Incorrect passcode!');
+                        return;
+                    }
+                    alert('Error verifying passcode.');
+                    return;
+                }
+
+                const data = await res.json();
+                if (data.ok) {
+                    // Success action — replace or extend as needed.
+                    alert('Access Granted!');
+                } else {
+                    alert('Incorrect passcode!');
+                }
+            } catch (err) {
+                alert('Network or server error.');
             }
         }
     </script>
