@@ -54,21 +54,18 @@
     <script>
         /*
           This page now verifies the passcode on a Netlify Function so the secret is not exposed in the client files.
-          Setup steps (Netlify):
-            1) In your Netlify site dashboard, go to Site settings → Build & deploy → Environment → Environment variables.
-            2) Add a variable named PASS_HASH with the SHA-256 hex of your passcode (do not commit this to the repo).
-               Example to generate SHA-256 locally: node -e "const crypto=require('crypto'); console.log(crypto.createHash('sha256').update('your-pass','utf8').digest('hex'))"
-            3) Deploy the site. The function endpoint will be available at /.netlify/functions/check-pass
 
-          Security notes:
-            - Using a serverless function prevents the plaintext passcode or its hash from appearing in client-side files.
-            - For stronger protection against brute-force, use a slow hash like bcrypt on a server that supports it. This example uses SHA-256 for simplicity and to avoid adding extra dependencies.
+          We've configured the Netlify function to allow requests only from your GitHub Pages origin (https://yeahdxh.github.io).
+          The page below calls the Netlify function using its full URL so it works from the github.io domain.
         */
+
+        // Full Netlify function URL (absolute) — calls the function deployed on your Netlify site
+        const netlifyFn = "https://precious-gingersnap-a378a9.netlify.app/.netlify/functions/check-pass";
 
         async function checkPasscode() {
             const pass = document.getElementById('passcode').value;
             try {
-                const res = await fetch('/.netlify/functions/check-pass', {
+                const res = await fetch(netlifyFn, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ pass })
