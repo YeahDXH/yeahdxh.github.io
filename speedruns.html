@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SPEEDRUNS - DXH's Sample Website</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .page-header {
+            display: flex;
+            align-items: baseline;
+            gap: 40px;
+        }
+        .header-note {
+            font-size: 14px;
+            letter-spacing: 0.5px;
+        }
+        .speedruns-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 220px);
+            gap: 25px 30px;
+            margin-top: 15px;
+        }
+        .run-card {
+            font-size: 14px;
+        }
+        .run-card .top-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 4px;
+        }
+        .run-card img {
+            width: 100%;
+            height: 125px;
+            object-fit: cover;
+            border: 1px solid #000;
+            display: block;
+        }
+        .run-card .title {
+            text-align: center;
+            margin-top: 5px;
+        }
+        .run-card .time {
+            text-align: center;
+            font-weight: bold;
+            font-size: 15px;
+            margin-top: 2px;
+        }
+        .red-text { color: #ff0000; font-size: 13px; }
+        .blue-link { font-size: 13px; }
+        .pagination-nav {
+            position: fixed;
+            bottom: 30px;
+            right: 40px;
+            font-size: 18px;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="header-star">
+        <span class="line-1">DXH's</span>
+        <span class="line-2">Sample Website</span>
+    </div>
+
+    <div class="page-header">
+        <h1 class="page-title" style="margin-bottom: 10px;">SPEEDRUNS</h1>
+        <div class="header-note">PERSONAL BEST ONLY</div>
+    </div>
+
+    <div class="speedruns-grid">
+        <!-- Row 1 -->
+        <div class="run-card">
+            <div class="top-info">
+                <span>1.9.2026</span>
+                <span class="red-text">[screenshot only]</span>
+            </div>
+            <img src="mtov_thumb.png" alt="Mini Tower of Vortex">
+            <div class="title">Mini Tower of Vortex (no skips)</div>
+            <div class="time">29.934</div>
+        </div>
+
+        <div class="run-card">
+            <div class="top-info">
+                <span>24.8.2026</span>
+                <span class="red-text">[screenshot only]</span>
+            </div>
+            <img src="demo_any_thumb.png" alt="Demo Any%">
+            <div class="title">Demo (Any%)</div>
+            <div class="time">19.952</div>
+        </div>
+
+        <div class="run-card">
+            <div class="top-info">
+                <span>24.8.2026</span>
+                <span class="red-text">[screenshot only]</span>
+            </div>
+            <img src="demo_100_thumb.png" alt="Demo 100%">
+            <div class="title">Demo (100%)</div>
+            <div class="time">1:01.267</div>
+        </div>
+
+        <!-- Row 2 -->
+        <div class="run-card">
+            <div class="top-info">
+                <span>20.8.2026</span>
+                <a href="https://youtube.com" class="blue-link" target="_blank">[video]</a>
+            </div>
+            <img src="snowy_peak_thumb.png" alt="Snowy Peak">
+            <div class="title">Snowy Peak</div>
+            <div class="time">20.548</div>
+        </div>
+
+        <div class="run-card">
+            <div class="top-info">
+                <span>29.7.2026</span>
+                <a href="https://youtube.com" class="blue-link" target="_blank">[video]</a>
+            </div>
+            <img src="backrooms_thumb.png" alt="Backrooms">
+            <div class="title">Backrooms</div>
+            <div class="time">45.93</div>
+        </div>
+    </div>
+
+    <div class="pagination-nav">
+        <a href="archives.html">&lt;- back</a>
+        <span style="color: #000;">page 1/1</span>
+        <a href="#">next -&gt;</a>
+    </div>
+</body>
+</html>
