@@ -5,11 +5,36 @@
     <title>ARCHIVES - DXH's Sample Website</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        .archive-grid { display: flex; gap: 30px; margin-top: 20px; }
-        .archive-item { width: 240px; }
-        .archive-item img { width: 100%; border: 1px solid #000; display: block; }
-        .archive-item .date { font-size: 16px; margin-bottom: 5px; }
-        .archive-item .desc { font-size: 14px; margin: 5px 0; }
+        .archives-wrapper {
+            display: flex;
+            gap: 40px;
+            margin-top: 20px;
+        }
+        .video-grid {
+            display: flex;
+            gap: 25px;
+        }
+        .video-card {
+            width: 220px;
+        }
+        .video-card img {
+            width: 100%;
+            border: 1px solid #000;
+            display: block;
+        }
+        .sidebar-links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .sidebar-item h2 {
+            margin: 0;
+            font-size: 22px;
+        }
+        .sidebar-item p {
+            margin: 2px 0 0 0;
+            font-size: 13px;
+        }
     </style>
 </head>
 <body>
@@ -20,20 +45,45 @@
 
     <h1 class="page-title">ARCHIVES</h1>
 
-    <div class="archive-grid">
-        <div class="archive-item">
-            <div class="date">31.8.2026</div>
-            <img src="https://i9.ytimg.com/vi/UnEF_SGb760/mqdefault.jpg?v=6a952070&sqp=COyy69QG&rs=AOn4CLCUVrt5cztweq2rAzrzJvWTFggghw" alt="Scripting thumbnail">
-            <div class="desc">SCRIPTING in Vortex Studio 🔥🔥</div>
-            <a href="https://youtu.be/UnEF_SGb760" target="_blank">watch it here (5:43)</a>
+    <div class="archives-wrapper">
+        <div class="video-grid">
+            <div class="video-card">
+                <div>31.8.2026</div>
+                <img src="https://i9.ytimg.com/vi/UnEF_SGb760/mqdefault.jpg?v=6a952070&sqp=COyy69QG&rs=AOn4CLCUVrt5cztweq2rAzrzJvWTFggghw" alt="Scripting thumbnail">
+                <p>SCRIPTING in Vortex Studio 🔥🔥</p>
+                <a href="https://youtube.com" target="_blank">watch it here (5:43)</a>
+            </div>
+
+            <div class="video-card">
+                <div>26.8.2026</div>
+                <img src="https://i9.ytimg.com/vi/3uTnPup0iTM/mqdefault.jpg?v=6a8f0784&sqp=CMi-69QG&rs=AOn4CLAJuq6gAo6edxbSIsSHtuo4nuKl-g" alt="Vortex Studio Update">
+                <p>What am I building? (UPDATE 2) (Vortex Studio)</p>
+                <a href="https://youtube.com" target="_blank">watch it here (8:39)</a>
+            </div>
         </div>
 
-        <div class="archive-item">
-            <div class="date">26.8.2026</div>
-            <img src="https://i9.ytimg.com/vi/3uTnPup0iTM/mqdefault.jpg?v=6a8f0784&sqp=CMi-69QG&rs=AOn4CLAJuq6gAo6edxbSIsSHtuo4nuKl-g" alt="Vortex Studio Update">
-            <div class="desc">What am I building? (UPDATE 2) (Vortex Studio)</div>
-            <a href="https://youtu.be/3uTnPup0iTM" target="_blank">watch it here (8:39)</a>
+        <div class="sidebar-links">
+            <div class="sidebar-item">
+                <h2><a href="speedruns.html">Speedruns</a></h2>
+                <p>coolest speedruns worldwide</p>
+            </div>
+            <div class="sidebar-item">
+                <h2><a href="wiki.html">Wiki</a></h2>
+                <p>coolest articles worldwide</p>
+            </div>
+            <div class="sidebar-item">
+                <h2><a href="scripts.html">Scripts</a></h2>
+                <p>coolest subtitles worldwide</p>
+            </div>
+            <div class="sidebar-item">
+                <h2><a href="reality.html" style="color: red;">reality</a></h2>
+                <p>?</p>
+            </div>
         </div>
+    </div>
+
+    <div class="back-link">
+        <a href="index.html">&lt;- back</a>
     </div>
 </body>
 </html>
