@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>reality - DXH's Sample Website</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .passcode-box {
+            margin-top: 20px;
+        }
+        .passcode-box label {
+            font-size: 18px;
+            display: block;
+            margin-bottom: 8px;
+        }
+        .passcode-box input[type="text"] {
+            width: 300px;
+            padding: 4px;
+            border: 1px solid #000;
+            font-size: 16px;
+            outline: none;
+            display: block;
+            margin-bottom: 10px;
+        }
+        .passcode-box button {
+            background-color: #00a2ff;
+            color: #ffffff;
+            border: none;
+            padding: 4px 12px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="header-star">
+        <span class="line-1">DXH's</span>
+        <span class="line-2">Sample Website</span>
+    </div>
+
+    <h1 class="page-title" style="color: red;">reality</h1>
+
+    <div class="passcode-box">
+        <label for="passcode">whats the passcode?</label>
+        <input type="text" id="passcode" autocomplete="off">
+        <button type="button" onclick="checkPasscode()">submit</button>
+    </div>
+
+    <div class="back-link">
+        <a href="archives.html">&lt;- back</a>
+    </div>
+
+    <script>
+        function checkPasscode() {
+            const input = document.getElementById('passcode').value;
+            if (input === 'secret') {
+                alert('Access Granted!');
+            } else {
+                alert('Incorrect passcode!');
+            }
+        }
+    </script>
+</body>
+</html>
