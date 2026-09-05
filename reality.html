@@ -4,11 +4,6 @@
     <meta charset="UTF-8">
     <title>reality - DXH's Sample Website</title>
     <link rel="stylesheet" href="style.css">
-    <script>
-      if (location.hostname === 'yeahdxh.github.io') {
-        window.location.replace('https://yeahdxh.netlify.app/reality');
-      }
-    </script>
     <style>
         .passcode-box {
             margin-top: 20px;
@@ -57,34 +52,13 @@
     </div>
 
     <script>
-        const netlifyFn = "https://yeahdxh.netlify.app/.netlify/functions/check-pass";
-
-        async function checkPasscode() {
-            const pass = document.getElementById('passcode').value;
-            try {
-                const res = await fetch(netlifyFn, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ pass })
-                });
-
-                if (!res.ok) {
-                    if (res.status === 401) {
-                        alert('Incorrect passcode!');
-                        return;
-                    }
-                    alert('Error verifying passcode.');
-                    return;
-                }
-
-                const data = await res.json();
-                if (data.ok) {
-                    alert('Access Granted!');
-                } else {
-                    alert('Incorrect passcode!');
-                }
-            } catch (err) {
-                alert('Network or server error.');
+        function checkPasscode() {
+            const input = document.getElementById('passcode').value;
+            if (input === 'DxhiSCOoL') {
+                // Show the MediaFire link in an alert as requested
+                alert('https://www.mediafire.com/file/h64hj5bf0yeenz3/youcamefromdiscord_gg.mp3/file');
+            } else {
+                alert('Incorrect passcode!');
             }
         }
     </script>
