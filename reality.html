@@ -5,8 +5,6 @@
     <title>reality - DXH's Sample Website</title>
     <link rel="stylesheet" href="style.css">
     <script>
-      // Redirect GitHub Pages visitors to the Netlify deployment.
-      // Only redirect when the page is served from the github.io host to avoid loops.
       if (location.hostname === 'yeahdxh.github.io') {
         window.location.replace('https://precious-gingersnap-a378a9.netlify.app/reality');
       }
@@ -59,15 +57,7 @@
     </div>
 
     <script>
-        /*
-          This page now verifies the passcode on a Netlify Function so the secret is not exposed in the client files.
-
-          We've configured the Netlify function to allow requests only from your GitHub Pages origin (https://yeahdxh.github.io).
-          The page below calls the Netlify function using its full URL so it works from the github.io domain.
-        */
-
-        // Full Netlify function URL (absolute) — calls the function deployed on your Netlify site
-        const netlifyFn = "https://precious-gingersnap-a378a9.netlify.app/.netlify/functions/check-pass";
+        const netlifyFn = "https://yeahdxh.netlify.app/.netlify/functions/check-pass";
 
         async function checkPasscode() {
             const pass = document.getElementById('passcode').value;
@@ -89,7 +79,6 @@
 
                 const data = await res.json();
                 if (data.ok) {
-                    // Success action — replace or extend as needed.
                     alert('Access Granted!');
                 } else {
                     alert('Incorrect passcode!');
